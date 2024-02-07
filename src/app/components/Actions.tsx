@@ -1,21 +1,28 @@
 import styled from 'styled-components';
-import BaseIconButton from './Base/BaseIconButton';
+import ArrowFromButtomIcon from '../../assets/arrow-alt-from-bottom.svg?react';
+import ArrowRightIcon from '../../assets/arrow-right.svg?react';
+import PlusIcon from '../../assets/plus-small.svg?react';
 import BaseLabeledIconButton from './Base/BaseLabeledIconButton';
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 0 6px;
 `;
 
 export default function Actions() {
   return (
     <Container>
-      <BaseLabeledIconButton icon="arrow-right">Send</BaseLabeledIconButton>
-      <BaseLabeledIconButton icon="arrow-alt-from-bottom">
-        Top up
+      <BaseLabeledIconButton label="Send">
+        <ArrowRightIcon />
       </BaseLabeledIconButton>
-      <BaseLabeledIconButton icon="plus-small">Another</BaseLabeledIconButton>
+      <BaseLabeledIconButton label="Top up">
+        <ArrowFromButtomIcon />
+      </BaseLabeledIconButton>
+      <BaseLabeledIconButton label="Another">
+        <PlusIcon />
+      </BaseLabeledIconButton>
     </Container>
   );
 }

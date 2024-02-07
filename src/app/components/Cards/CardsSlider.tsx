@@ -5,12 +5,12 @@ import Card from './Card';
 const Container = styled.div`
   display: flex;
   overflow-x: scroll;
-  margin: 28px -30px;
+  margin: 32px -30px;
   padding: 0 30px;
 `;
 
 export default function CardsSlider() {
-  const cards = [getCardMock(), getCardMock(), getCardMock()];
+  const cards = [{ number: 3745, balance: 5634 }, getCardMock(), getCardMock()];
 
   return (
     <Container>

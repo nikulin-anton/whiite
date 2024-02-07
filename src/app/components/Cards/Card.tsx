@@ -11,13 +11,16 @@ type Props = {
 const CardItem = styled.div`
   display: grid;
   grid-template-columns: auto auto;
-  aspect-ratio: 86 / 54;
-  min-width: 100%;
+  grid-template-rows: min-content;
+  align-items: center;
+  min-width: 91%;
   box-sizing: border-box;
   border-radius: 24px;
   padding: 24px;
   background-color: #ffefe2;
-  padding: 30px;
+  padding: 35px 32px 24px;
+  max-width: 300px;
+  aspect-ratio: 1.9;
 
   path {
     fill: #000;
@@ -34,7 +37,7 @@ const StyledVisaIcon = styled(VisaIcon)`
 `;
 
 const CardNumber = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   text-align: right;
 `;
@@ -42,16 +45,25 @@ const CardNumber = styled.div`
 const Amount = styled.div`
   display: flex;
   align-items: end;
-  font-size: 28px;
+  height: 100%;
+  font-size: 50px;
   font-weight: bold;
 `;
 
 const Currency = styled.div`
   position: relative;
-  font-size: 24px;
-  bottom: 2px;
+  font-size: 37px;
+  bottom: 4px;
+  margin-right: 4px;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+`;
+
+const Mask = styled.span`
   margin-right: 4px;
 `;
+
+const formatter = new Intl.NumberFormat('en-US');
 
 export default function Card({
   number,
@@ -62,10 +74,12 @@ export default function Card({
   return (
     <CardItem>
       <StyledVisaIcon />
-      <CardNumber>**** {number}</CardNumber>
+      <CardNumber>
+        <Mask>&bull; &bull; &bull; &bull;</Mask> {number}
+      </CardNumber>
       <Amount>
         <Currency>$</Currency>
-        {balance}
+        {formatter.format(balance)}
       </Amount>
     </CardItem>
   );

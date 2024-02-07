@@ -1,10 +1,10 @@
-import { ComponentPropsWithoutRef } from 'react';
-import BaseIconButton from './BaseIconButton';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import styled from 'styled-components';
+import BaseIconButton from './BaseIconButton';
 
 type Props = {
-  imageUrl?: string;
-  icon?: string;
+  children: ReactNode;
+  label: string;
 } & ComponentPropsWithoutRef<'button'>;
 
 const Container = styled.label`
@@ -14,14 +14,15 @@ const Container = styled.label`
 `;
 
 const Label = styled.span`
-  margin-top: 20px;
+  margin-top: 13px;
+  font-size: 20px;
 `;
 
 export default function BaseLabeledIconButton(props: Props) {
   return (
     <Container>
-      <BaseIconButton {...props} />
-      <Label>{props.children}</Label>
+      <BaseIconButton {...props}>{props.children}</BaseIconButton>
+      <Label>{props.label}</Label>
     </Container>
   );
 }

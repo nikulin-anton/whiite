@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import BellIcon from '../../assets/bell.svg?react';
 import BaseIconButton from './Base/BaseIconButton';
 
 const HeaderContainer = styled.header`
@@ -14,8 +15,12 @@ export default function Header() {
 
   return (
     <HeaderContainer>
-      <BaseIconButton imageUrl={imageUrl}></BaseIconButton>
-      <BaseIconButton icon="bell"></BaseIconButton>
+      <BaseIconButton>
+        <img src={imageUrl} alt="User" />
+      </BaseIconButton>
+      <BaseIconButton>
+        <BellIcon />
+      </BaseIconButton>
     </HeaderContainer>
   );
 }
