@@ -11,6 +11,8 @@ const Container = styled.button`
   font-family: inherit;
   font-size: 16px;
   align-items: center;
+  font-size: 22px;
+  padding: 0;
 `;
 
 const TransactionRecipient = styled.div`
@@ -32,6 +34,7 @@ const Recipient = styled.div`
 
 const Area = styled.div`
   color: lightgray;
+  font-size: 19px;
 `;
 
 const Amount = styled.div`
@@ -40,6 +43,8 @@ const Amount = styled.div`
 
 const Date = styled.div`
   color: lightgray;
+  font-size: 19px;
+  margin-top: 8px;
 `;
 
 const LogoBaseIcon = styled(BaseIcon)`
@@ -61,7 +66,7 @@ export default function TransactionItem() {
         <Area>Transport</Area>
       </TransactionRecipient>
       <TransactionAmount>
-        <Amount>$26.87</Amount>
+        <Amount>-$26.87</Amount>
         <Date>4:32 PM</Date>
       </TransactionAmount>
     </Container>
