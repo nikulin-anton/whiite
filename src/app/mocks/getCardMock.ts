@@ -7,8 +7,8 @@ export function getCardMock() {
       parens: false,
       ellipsis: false,
     }),
-    balance: faker.number.int({ min: 100, max: 980000 }),
+    balance: faker.number.int({ min: 100, max: 10000 }),
     paymentNetwork: 'visa',
-    currency: faker.finance.currencyCode(),
+    currency: '$',
   };
 }

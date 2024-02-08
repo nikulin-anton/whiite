@@ -7,10 +7,16 @@ const Container = styled.div`
   overflow-x: scroll;
   margin: 32px -30px;
   padding: 0 30px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default function CardsSlider() {
-  const cards = [{ number: 3745, balance: 5634 }, getCardMock(), getCardMock()];
+  const cards = [getCardMock(), getCardMock()];
 
   return (
     <Container>

@@ -4,7 +4,6 @@ import VisaIcon from '../../../assets/visa.svg?react';
 type Props = {
   number: string;
   balance: number;
-  paymentNetwork: string;
   currency: string;
 };
 
@@ -65,12 +64,7 @@ const Mask = styled.span`
 
 const formatter = new Intl.NumberFormat('en-US');
 
-export default function Card({
-  number,
-  balance,
-  paymentNetwork,
-  currency,
-}: Props) {
+export default function Card({ number, balance, currency }: Props) {
   return (
     <CardItem>
       <StyledVisaIcon />
@@ -78,7 +72,7 @@ export default function Card({
         <Mask>&bull; &bull; &bull; &bull;</Mask> {number}
       </CardNumber>
       <Amount>
-        <Currency>$</Currency>
+        <Currency>{currency}</Currency>
         {formatter.format(balance)}
       </Amount>
     </CardItem>

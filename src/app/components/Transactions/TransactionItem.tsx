@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import BaseIcon from '../Base/BaseIcon';
-import UberIcon from '../../../assets/uber.png';
+import { Transaction } from '../../interfaces/Transaction';
+
+type Props = {
+  transaction: Transaction;
+};
 
 const Container = styled.button`
   display: grid;
@@ -20,6 +24,7 @@ const TransactionRecipient = styled.div`
   flex-direction: column;
   align-items: start;
   padding-left: 20px;
+  overflow: hidden;
 `;
 
 const TransactionAmount = styled.div`
@@ -29,12 +34,18 @@ const TransactionAmount = styled.div`
 `;
 
 const Recipient = styled.div`
+  text-align: left;
   font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
 `;
 
 const Area = styled.div`
-  color: lightgray;
   font-size: 19px;
+  text-transform: capitalize;
+  color: #858c94;
 `;
 
 const Amount = styled.div`
@@ -45,29 +56,30 @@ const Date = styled.div`
   color: lightgray;
   font-size: 19px;
   margin-top: 8px;
+  color: #858c94;
 `;
 
-const LogoBaseIcon = styled(BaseIcon)`
-  img {
-    max-width: 60%;
-  }
-`;
-
-console.log(LogoBaseIcon);
-
-export default function TransactionItem() {
+export default function TransactionItem({ transaction }: Props) {
   return (
     <Container>
-      <LogoBaseIcon>
-        <img src={UberIcon} alt="Logo" />
-      </LogoBaseIcon>
+      <BaseIcon>
+        <img src={transaction.recipient.logo} alt="Logo" />
+      </BaseIcon>
       <TransactionRecipient>
-        <Recipient>Uber Taxi</Recipient>
-        <Area>Transport</Area>
+        <Recipient>{transaction.recipient.name}</Recipient>
+        <Area>{transaction.recipient.area}</Area>
       </TransactionRecipient>
       <TransactionAmount>
-        <Amount>-$26.87</Amount>
-        <Date>4:32 PM</Date>
+        <Amount>
+          {transaction.currency}
+          {transaction.amount}
+        </Amount>
+        <Date>
+          {transaction.date.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}
+        </Date>
       </TransactionAmount>
     </Container>
   );

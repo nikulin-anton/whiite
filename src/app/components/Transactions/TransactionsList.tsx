@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import TransactionItem from './TransactionItem';
 import BaseLink from '../Base/BaseLink';
+import { getTransactionMock } from '../../mocks/getTransactionMock';
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Header = styled.div`
 
 const Title = styled.div`
   font-size: 20px;
-  color: lightblue;
+  color: #92959e;
 `;
 
 const List = styled.div`
@@ -27,6 +28,14 @@ const List = styled.div`
 `;
 
 export default function TransactionsList() {
+  const transactions = [
+    getTransactionMock(),
+    getTransactionMock(),
+    getTransactionMock(),
+    getTransactionMock(),
+    getTransactionMock(),
+  ];
+
   return (
     <Container>
       <Header>
@@ -34,8 +43,9 @@ export default function TransactionsList() {
         <BaseLink to="/transactions">See all</BaseLink>
       </Header>
       <List>
-        <TransactionItem></TransactionItem>
-        <TransactionItem></TransactionItem>
+        {transactions.map((transaction) => (
+          <TransactionItem key={transaction.id} transaction={transaction} />
+        ))}
       </List>
     </Container>
   );
