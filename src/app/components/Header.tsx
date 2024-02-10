@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import BellIcon from '../../assets/bell.svg?react';
 import BaseIconButton from './Base/BaseIconButton';
+import { User } from '../interfaces/User';
+
+type Props = {
+  user: User;
+};
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -8,15 +13,11 @@ const HeaderContainer = styled.header`
   align-items: center;
 `;
 
-export default function Header() {
-  const imageUrl =
-    'https://images.generated.photos/_Cr4TNeZYVx577ko6ys2AloEATdCPrW1SjPle75b7mk/rs:fit:256:256/' +
-    'czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTQ0NzkyLmpwZw.jpg';
-
+export default function Header({ user }: Props) {
   return (
     <HeaderContainer>
       <BaseIconButton>
-        <img src={imageUrl} alt="User" />
+        <img src={user.avatarUrl} alt="User" />
       </BaseIconButton>
       <BaseIconButton>
         <BellIcon />

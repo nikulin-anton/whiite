@@ -18,14 +18,7 @@ export default defineConfig({
     port: 4300,
     host: 'localhost',
   },
-
   plugins: [react(), svgr(), nxViteTsPaths()],
-
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
-
   build: {
     outDir: './dist/white',
     reportCompressedSize: true,

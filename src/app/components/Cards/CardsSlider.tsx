@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-import { getCardMock } from '../../mocks/getCardMock';
-import Card from './Card';
+import { Card } from '../../interfaces/Card';
+import CardItem from './Card';
+
+type Props = {
+  cards: Card[];
+};
 
 const Container = styled.div`
   display: flex;
@@ -15,18 +19,15 @@ const Container = styled.div`
   }
 `;
 
-export default function CardsSlider() {
-  const cards = [getCardMock(), getCardMock()];
-
+export default function CardsSlider({ cards }: Props) {
   return (
     <Container>
       {cards.map((card) => (
-        <Card
+        <CardItem
           key={card.number}
           number={card.number}
           balance={card.balance}
           currency={card.currency}
-          paymentNetwork={card.paymentNetwork}
         />
       ))}
     </Container>

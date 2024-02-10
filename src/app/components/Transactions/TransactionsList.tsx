@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import TransactionItem from './TransactionItem';
+import { Transaction } from '../../interfaces/Transaction';
 import BaseLink from '../Base/BaseLink';
-import { getTransactionMock } from '../../mocks/getTransactionMock';
+import TransactionItem from './TransactionItem';
+
+type Props = {
+  transactions: Transaction[];
+};
 
 const Container = styled.div`
   display: flex;
@@ -27,15 +31,7 @@ const List = styled.div`
   gap: 48px;
 `;
 
-export default function TransactionsList() {
-  const transactions = [
-    getTransactionMock(),
-    getTransactionMock(),
-    getTransactionMock(),
-    getTransactionMock(),
-    getTransactionMock(),
-  ];
-
+export default function TransactionsList({ transactions }: Props) {
   return (
     <Container>
       <Header>
