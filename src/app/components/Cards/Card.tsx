@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import VisaIcon from '../../../assets/visa.svg?react';
+import { getColor } from '../../helpers/getColor';
 
 type Props = {
   number: string;
@@ -65,8 +66,10 @@ const Mask = styled.span`
 const formatter = new Intl.NumberFormat('en-US');
 
 export default function Card({ number, balance, currency }: Props) {
+  const color = getColor('card');
+
   return (
-    <CardItem>
+    <CardItem style={{backgroundColor: color}}>
       <StyledVisaIcon />
       <CardNumber>
         <Mask>&bull; &bull; &bull; &bull;</Mask> {number}

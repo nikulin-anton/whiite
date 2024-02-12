@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Actions from './components/Actions';
+import BaseLoader from './components/Base/BaseLoader';
 import CardsSlider from './components/Cards/CardsSlider';
 import Header from './components/Header';
 import TransactionsList from './components/Transactions/TransactionsList';
-import { User } from './interfaces/User';
-import { getUser } from './api/user';
-import BaseLoader from './components/Base/BaseLoader';
-import { Card } from './interfaces/Card';
-import { getCards } from './api/cards';
-import { Transaction } from './interfaces/Transaction';
-import { getTransactions } from './api/transactions';
+import { fetchCards } from './store/cards';
+import { useAppDispatch, useAppSelector } from './store/hooks';
+import { fetchTransactions } from './store/transactions';
+import { fetchUser } from './store/user';
 
 // https://dribbble.com/shots/19270611-Bank-payment-app
 
@@ -32,26 +30,24 @@ const LoaderContainer = styled.div`
 `;
 
 export function App() {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [cards, setCards] = useState<Card[]>([]);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const user = useAppSelector((state) => state.user);
+  const cards = useAppSelector((state) => state.cards);
+  const transactions = useAppSelector((state) => state.transactions);
+  const dispatch = useAppDispatch();
+  const isLoading = user.loading || cards.loading || transactions.loading;
 
   useEffect(() => {
-    getUser()
-      .then((user) => {
-        setUser(user);
-
-        return Promise.all([getCards(user.id), getTransactions(user.id)]);
-      })
-      .then(([cards, transactions]) => {
-        setCards(cards);
-        setTransactions(transactions);
-      })
-      .finally(() => setLoading(false));
+    dispatch(fetchUser());
   }, []);
 
-  if (loading || user === null) {
+  useEffect(() => {
+    if (!user.data?.id) return;
+
+    dispatch(fetchCards(user.data.id));
+    dispatch(fetchTransactions(user.data.id));
+  }, [user]);
+
+  if (isLoading || !user.data) {
     return (
       <LoaderContainer>
         <BaseLoader />
@@ -61,10 +57,10 @@ export function App() {
 
   return (
     <StyledApp>
-      <Header user={user} />
-      <StyledCardsSlider cards={cards} />
+      <Header user={user.data} />
+      <StyledCardsSlider cards={cards.items} />
       <Actions />
-      <TransactionsList transactions={transactions} />
+      <TransactionsList transactions={transactions.items} />
     </StyledApp>
   );
 }
