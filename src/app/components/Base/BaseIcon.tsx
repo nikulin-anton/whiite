@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ICON_SIZE = 60;
+export const ICON_SIZE = 60;
 const SVG_SIZE = 24;
 
 const Container = styled.div`
