@@ -14,7 +14,7 @@ const BackHeader = styled.header`
 
 const Title = styled.h2`
   color: ${SECONDARY_COLOR};
-  font-weight: normal;
+  font-weight: 300;
   text-align: center;
   width: 100%;
   padding-right: ${ICON_SIZE}px;

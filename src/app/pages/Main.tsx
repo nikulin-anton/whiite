@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Actions from '../components/Actions';
+import BaseLink from '../components/Base/BaseLink';
 import BaseLoader from '../components/Base/BaseLoader';
 import CardsSlider from '../components/Cards/CardsSlider';
 import Header from '../components/Header';
@@ -16,6 +17,18 @@ const LoaderContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
+`;
+
+const Subheader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 47px;
+`;
+
+const Title = styled.div`
+  font-size: 20px;
+  color: #92959e;
 `;
 
 export default function MainPage() {
@@ -37,7 +50,13 @@ export default function MainPage() {
       <Header user={user.data} />
       <StyledCardsSlider cards={cards.items} />
       <Actions />
-      <TransactionsList transactions={transactions.items} />
+      <div className="transactions">
+        <Subheader>
+          <Title>Transactions</Title>
+          <BaseLink to="/transactions">See all</BaseLink>
+        </Subheader>
+        <TransactionsList transactions={transactions.items} />
+      </div>
     </>
   );
 }
