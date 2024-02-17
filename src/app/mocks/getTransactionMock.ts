@@ -18,7 +18,7 @@ export function getTransactionMock(
     },
     amount: +faker.finance.amount({ min: 0.5, max: 110 }),
     currency: '$',
-    date: faker.date.past(),
+    date: faker.date.recent({ days: 10 }),
     ...baseTransaction,
   };
 }

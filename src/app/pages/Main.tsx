@@ -55,7 +55,7 @@ export default function MainPage() {
           <Title>Transactions</Title>
           <BaseLink to="/transactions">See all</BaseLink>
         </Subheader>
-        <TransactionsList transactions={transactions.items} />
+        <TransactionsList transactions={transactions.items.slice(0, 5)} />
       </div>
     </>
   );

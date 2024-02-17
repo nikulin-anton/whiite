@@ -76,8 +76,8 @@ export default function TransactionItem({ transaction }: Props) {
         </Amount>
         <Date>
           {transaction.date.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
+            hour: 'numeric',
+            minute: 'numeric',
           })}
         </Date>
       </TransactionAmount>
