@@ -33,7 +33,7 @@ export default function TransactionsPage() {
   const availableMonths = Object.keys(groupedByMonth);
 
   const transactionsLists = availableMonths.map((key) => (
-    <div>
+    <div key={key}>
       <SubheaderTitle>{key}</SubheaderTitle>
       <TransactionsList transactions={groupedByMonth[key]} />
     </div>
