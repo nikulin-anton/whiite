@@ -1,6 +1,9 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import MainPage from './pages/Main';
+import TransactionsPage from './pages/Transactions';
 import { fetchCards } from './store/cards';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { fetchTransactions } from './store/transactions';
@@ -16,6 +19,7 @@ const StyledApp = styled.div`
 export function App() {
   const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -30,7 +34,19 @@ export function App() {
 
   return (
     <StyledApp>
-      <Outlet />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 50 }}
+        >
+          <Routes key={location.pathname} location={location}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/transactions" element={<TransactionsPage />} />
+          </Routes>
+        </motion.div>
+      </AnimatePresence>
     </StyledApp>
   );
 }
