@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import BaseIcon from '../Base/BaseIcon';
 import { Transaction } from '../../interfaces/Transaction';
 
-type Props = {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   transaction: Transaction;
-};
+}
 
 const Container = styled.button`
   display: grid;
@@ -17,6 +17,7 @@ const Container = styled.button`
   align-items: center;
   font-size: 22px;
   padding: 0;
+  cursor: pointer;
 `;
 
 const TransactionRecipient = styled.div`
@@ -59,9 +60,9 @@ const Date = styled.div`
   color: #858c94;
 `;
 
-export default function TransactionItem({ transaction }: Props) {
+export default function TransactionItem({ transaction, ...props }: Props) {
   return (
-    <Container>
+    <Container {...props}>
       <BaseIcon>
         <img src={transaction.recipient.logo} alt="Logo" />
       </BaseIcon>

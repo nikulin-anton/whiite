@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import MainPage from './pages/Main';
+import TransactionInfoPage from './pages/TransactionInfo';
 import TransactionsPage from './pages/Transactions';
 import { fetchCards } from './store/cards';
 import { useAppDispatch, useAppSelector } from './store/hooks';
@@ -44,6 +45,7 @@ export function App() {
           <Routes key={location.pathname} location={location}>
             <Route path="/" element={<MainPage />} />
             <Route path="/transactions" element={<TransactionsPage />} />
+            <Route path="/transactions/:id" element={<TransactionInfoPage />} />
           </Routes>
         </motion.div>
       </AnimatePresence>
