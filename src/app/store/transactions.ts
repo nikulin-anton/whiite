@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Transaction } from '../interfaces/Transaction';
 import { getTransactions } from '../api/transactions';
+import { Transaction } from '../interfaces/Transaction';
 
 interface InitialState {
   items: Transaction[];

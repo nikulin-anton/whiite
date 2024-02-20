@@ -1,5 +1,8 @@
 import styled from 'styled-components';
+import BellIcon from '../../assets/bell.svg?react';
 import Actions from '../components/Actions';
+import BaseHeader from '../components/Base/BaseHeader';
+import BaseIconButton from '../components/Base/BaseIconButton';
 import BaseLink from '../components/Base/BaseLink';
 import BaseLoader from '../components/Base/BaseLoader';
 import CardsSlider from '../components/Cards/CardsSlider';
@@ -47,7 +50,20 @@ export default function MainPage() {
 
   return (
     <>
-      <Header user={user.data} />
+      <BaseHeader>
+        {{
+          leftAction: (
+            <BaseIconButton>
+              <img src={user.data.avatarUrl} alt="User" />
+            </BaseIconButton>
+          ),
+          rightAction: (
+            <BaseIconButton>
+              <BellIcon />
+            </BaseIconButton>
+          ),
+        }}
+      </BaseHeader>
       <StyledCardsSlider cards={cards.items} />
       <Actions />
       <div className="transactions">

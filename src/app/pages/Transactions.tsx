@@ -1,25 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LeftArrowIcon from '../../assets/angle-left.svg?react';
-import { ICON_SIZE } from '../components/Base/BaseIcon';
+import BaseHeader from '../components/Base/BaseHeader';
 import BaseIconButton from '../components/Base/BaseIconButton';
 import TransactionsList from '../components/Transactions/TransactionsList';
 import { Transaction } from '../interfaces/Transaction';
 import { useAppSelector } from '../store/hooks';
-import { SECONDARY_COLOR } from '../styles/colors';
-
-const BackHeader = styled.header`
-  display: flex;
-  align-items: center;
-`;
-
-const Title = styled.h2`
-  color: ${SECONDARY_COLOR};
-  font-weight: 300;
-  text-align: center;
-  width: 100%;
-  padding-right: ${ICON_SIZE}px;
-`;
 
 const SubheaderTitle = styled.div`
   font-size: 20px;
@@ -41,14 +27,18 @@ export default function TransactionsPage() {
 
   return (
     <>
-      <BackHeader>
-        <Link to="/">
-          <BaseIconButton>
-            <LeftArrowIcon />
-          </BaseIconButton>
-        </Link>
-        <Title>Transactions</Title>
-      </BackHeader>
+      <BaseHeader>
+        {{
+          leftAction: (
+            <Link to="/">
+              <BaseIconButton>
+                <LeftArrowIcon />
+              </BaseIconButton>
+            </Link>
+          ),
+          title: 'Transactions',
+        }}
+      </BaseHeader>
       {transactionsLists}
     </>
   );
