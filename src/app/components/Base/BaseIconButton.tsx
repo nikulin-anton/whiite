@@ -1,9 +1,10 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import styled from 'styled-components';
-import BaseIcon from './BaseIcon';
+import BaseIcon, { BaseIconSize } from './BaseIcon';
 
 type Props = {
   children: ReactNode;
+  size?: BaseIconSize;
 } & ComponentPropsWithoutRef<'button'>;
 
 const StyledButton = styled.button`
@@ -14,10 +15,14 @@ const StyledButton = styled.button`
   overflow: hidden;
 `;
 
-export default function BaseIconButton({ children, ...buttonProps }: Props) {
+export default function BaseIconButton({
+  children,
+  size,
+  ...buttonProps
+}: Props) {
   return (
     <StyledButton {...buttonProps}>
-      <BaseIcon>{children}</BaseIcon>
+      <BaseIcon size={size}>{children}</BaseIcon>
     </StyledButton>
   );
 }

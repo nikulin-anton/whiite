@@ -1,15 +1,23 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
+
+export type BaseIconSize = 'm' | 'l';
+
+export const ICON_SIZE_MAP = {
+  m: 60,
+  l: 90,
+};
 
 export const ICON_SIZE = 60;
 const SVG_SIZE = 24;
 
-const Container = styled.div`
+const Container = styled.div<{ $size: 'm' | 'l' }>`
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: ${ICON_SIZE}px;
-  height: ${ICON_SIZE}px;
+  width: ${(props) => ICON_SIZE_MAP[props.$size]}px;
+  height: ${(props) => ICON_SIZE_MAP[props.$size]}px;
   background-color: #f5f5f5;
   border-radius: 16px;
 
@@ -26,10 +34,19 @@ const Container = styled.div`
 
 type Props = {
   color?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
+  size?: BaseIconSize;
 };
 
-export default function BaseIcon(props: Props) {
-  return <Container className={props.className}>{props.children}</Container>;
+export default function BaseIcon({ className, children, color, size }: Props) {
+  const classList = [];
+
+  className && classList.push(className);
+
+  return (
+    <Container $size={size || 'm'} className={classList.join(' ')}>
+      {children}
+    </Container>
+  );
 }
