@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { BACKGROUND_DEFAULT } from '../../styles/colors';
 
 export type BaseIconSize = 'm' | 'l';
 
@@ -18,7 +19,7 @@ const Container = styled.div<{ $size: 'm' | 'l' }>`
   overflow: hidden;
   width: ${(props) => ICON_SIZE_MAP[props.$size]}px;
   height: ${(props) => ICON_SIZE_MAP[props.$size]}px;
-  background-color: #f5f5f5;
+  background-color: ${BACKGROUND_DEFAULT};
   border-radius: 16px;
 
   svg {

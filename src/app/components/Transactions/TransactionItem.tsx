@@ -54,7 +54,6 @@ const Amount = styled.div`
 `;
 
 const Date = styled.div`
-  color: lightgray;
   font-size: 19px;
   margin-top: 8px;
   color: #858c94;
