@@ -1,4 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import LeftArrowIcon from '../../assets/angle-left.svg?react';
+import DownloadIcon from '../../assets/download.svg?react';
+import BaseHeader from '../components/Base/BaseHeader';
+import BaseIconButton from '../components/Base/BaseIconButton';
 import { useAppSelector } from '../store/hooks';
 
 export default function TransactionInfoPage() {
@@ -10,5 +14,25 @@ export default function TransactionInfoPage() {
     return <div>Something went wrong</div>;
   }
 
-  return <div>Here will be a transaction: {JSON.stringify(transaction)}</div>;
+  return (
+    <>
+      <BaseHeader>
+        {{
+          leftAction: (
+            <Link to="/">
+              <BaseIconButton>
+                <LeftArrowIcon />
+              </BaseIconButton>
+            </Link>
+          ),
+          title: 'Receipt',
+          rightAction: (
+            <BaseIconButton>
+              <DownloadIcon />
+            </BaseIconButton>
+          ),
+        }}
+      </BaseHeader>
+    </>
+  );
 }

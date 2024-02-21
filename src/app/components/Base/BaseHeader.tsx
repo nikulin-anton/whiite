@@ -22,17 +22,25 @@ const Title = styled.h2`
   font-weight: 300;
   text-align: center;
   width: 100%;
-  padding-right: ${ICON_SIZE}px;
+`;
+
+const ActionContainer = styled.div`
+  width: ${ICON_SIZE}px;
+  height: ${ICON_SIZE}px;
 `;
 
 export default function BaseHeader({ children }: Props) {
-  // Left and right actions should have their own fixed-size
-  // containers so that the header is always in the center
   return (
     <HeaderContainer>
-      {children.leftAction && children.leftAction}
+      <ActionContainer>
+        {children.leftAction && children.leftAction}
+      </ActionContainer>
+
       {children.title && <Title>{children.title}</Title>}
-      {children.rightAction && children.rightAction}
+
+      <ActionContainer>
+        {children.rightAction && children.rightAction}
+      </ActionContainer>
     </HeaderContainer>
   );
 }

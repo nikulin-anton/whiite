@@ -42,6 +42,7 @@ export function App() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 50 }}
         >
+          {/* We have to use this old approach because of the animation between pages */}
           <Routes key={location.pathname} location={location}>
             <Route path="/" element={<MainPage />} />
             <Route path="/transactions" element={<TransactionsPage />} />
